@@ -1,7 +1,15 @@
-const conexion = require('../conexion_DB/conexion_DB');
+const connection = require('../dataBase/connection');
 
 module.exports = {
 
-
-
+    getAllCompetencias:(req,res)=>{
+        connection.query('SELECT * FROM competencias',
+        (error, competencias, fields) => {
+        res.json(competencias);
+        }
+    );
 }
+}
+
+
+
