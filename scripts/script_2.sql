@@ -24,7 +24,7 @@ ALTER table 'votos' ADD COLUMN 'competencias_id' INT NOT NULL;
 ALTER table 'votos' ADD FOREIGN KEY (competencias_id) REFERENCES competencias(id);
 
 /* AGREGO EL CAMPO pelicula_id en la tabla votos*/
-ALTER table votos ADD COLUMN pelicula_id INT(11) unsigned NOT NULL;
+ALTER table 'votos' ADD COLUMN pelicula_id INT(11) unsigned NOT NULL;
 
-/*CONVIERO EL CAMPO pelicula_id en FOREIGN KEY*/
-ALTER table votos ADD FOREIGN KEY (pelicula_id) REFERENCES pelicula(id);
+/*CONVIERTO EL CAMPO pelicula_id en FOREIGN KEY*/
+ALTER table 'votos' ADD FOREIGN KEY (pelicula_id) REFERENCES pelicula(id);
