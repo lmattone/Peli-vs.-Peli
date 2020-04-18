@@ -18,7 +18,7 @@ module.exports = {
                     (error, results, fields) => {
                         if (error) return console.error(error);
                         res.json({
-                            id: competencia,
+                            id: competencia.nombre, //aca modifique para probar algo
                             peliculas: results
                         });
                     }

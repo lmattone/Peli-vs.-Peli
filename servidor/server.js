@@ -4,6 +4,7 @@ const server = express();
 let controladorCompetencias = require('./controladores/competenciasController');
 let controladorPeliculas = require('./controladores/controladorPeliculas');
 let controladorVotos = require('./controladores/controladorVotos');
+let controladorResultados = require('./controladores/controladorResultados')
 
 
 server.use(cors());
@@ -14,8 +15,10 @@ server.use(express.urlencoded({ extended: true }));
 server.get('/competencias', controladorCompetencias.getAllCompetencias);
 //Ruta para obtener películas para votar
 server.get('/competencias/:id/peliculas', controladorPeliculas.getObtenerPeliculas);
-//Ruta para contabilizar los votos
+//Ruta para votar
 server.post('/competencias/:id/voto', controladorVotos.postObtenerVotos);
+//Ruta para obtener las 3 películas más votadas
+server.get('/competencias/:id/resultados', controladorResultados.getResultados);
 
 
 //seteamos el puerto en el cual va a escuchar los pedidos la aplicación
