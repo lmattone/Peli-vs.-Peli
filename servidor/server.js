@@ -4,7 +4,12 @@ const server = express();
 let controladorCompetencias = require('./controladores/competenciasController');
 let controladorPeliculas = require('./controladores/controladorPeliculas');
 let controladorVotos = require('./controladores/controladorVotos');
-let controladorResultados = require('./controladores/controladorResultados')
+let controladorResultados = require('./controladores/controladorResultados');
+let controladorNuevaCompetencia = require('./controladores/controladorNuevaCompetencia');
+let controladorEliminarVotos = require ('./controladores/controladorEliminarVotos');
+let controladorGeneros = require('./controladores/controladorGeneros');
+let controladorDirectores = require('./controladores/controladorDirectores');
+let controladorActores = require('./controladores/controladorActores');
 
 
 server.use(cors());
@@ -19,6 +24,17 @@ server.get('/competencias/:id/peliculas', controladorPeliculas.getObtenerPelicul
 server.post('/competencias/:id/voto', controladorVotos.postObtenerVotos);
 //Ruta para obtener las 3 películas más votadas
 server.get('/competencias/:id/resultados', controladorResultados.getResultados);
+//Ruta para crear una nueva competencia
+server.post('/competencias', controladorNuevaCompetencia.postNuevaCompetencia);
+// Ruta para eliminar votos
+server.delete('/competencias/:id/votos',controladorEliminarVotos.deleteVotos);
+// Ruta para cargar nuevas competencias a través del genero correspondiente
+server.get('/generos', controladorGeneros.getAllGeneros);
+// Ruta para cargar nuevas competencias a través del director correspondiente
+server.get('/directores', controladorDirectores.getAllDirectores);
+// Ruta para cargar nuevas competencias a través de los actores correspondientes
+server.get('/actores', controladorActores.getAllActores);
+
 
 
 //seteamos el puerto en el cual va a escuchar los pedidos la aplicación

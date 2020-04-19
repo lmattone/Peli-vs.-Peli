@@ -28,3 +28,24 @@ ALTER table 'votos' ADD COLUMN pelicula_id INT unsigned NOT NULL;
 
 /*CONVIERTO EL CAMPO pelicula_id en FOREIGN KEY*/
 ALTER table 'votos' ADD FOREIGN KEY (pelicula_id) REFERENCES pelicula(id);
+
+/* GUIA 3 PASO 3 */
+/*AGREGO EL CAMPO genero_id en la tabla competencias*/
+ALTER TABLE competencias ADD COLUMN genero_id INT unsigned;
+
+/*CONVIERTO EL CAMPO genero_id en FOREIGN KEY*/
+ALTER table competencias ADD FOREIGN KEY (genero_id) REFERENCES genero(id);
+
+/*AGREGO EL CAMPO director_id en la tabla competencias*/
+ALTER TABLE competencias ADD COLUMN director_id INT unsigned;
+
+/*CONVIERTO EL CAMPO director_id en FOREIGN KEY*/
+ALTER table competencias ADD FOREIGN KEY (director_id) REFERENCES director(id);
+
+
+/*AGREGO EL CAMPO actor_id en la tabla competencias*/
+ALTER TABLE competencias ADD COLUMN actor_id INT unsigned;
+
+/*CONVIERTO EL CAMPO actor_id en FOREIGN KEY*/
+ALTER table competencias ADD FOREIGN KEY (actor_id) REFERENCES actor(id);
+
