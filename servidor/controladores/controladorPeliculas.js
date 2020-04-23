@@ -18,32 +18,31 @@ module.exports = {
 
                 // Si elige una competencia por director, actor y genero
                 if (competencia.director_id && competencia.actor_id && competencia.genero_id){
-                    sqlPeliculas += ' LEFT JOIN director_pelicula as Dp on P.id = Dp.pelicula_id '+
-                                    ' LEFT JOIN actor_pelicula as Ap on P.id = Ap.pelicula_id '
+                    sqlPeliculas += ' LEFT JOIN director_pelicula as Dp ON P.id = Dp.pelicula_id '+
+                                    ' LEFT JOIN actor_pelicula as Ap ON P.id = Ap.pelicula_id '
                                     ' WHERE Dp.director_id = ? AND  Ap.actor_id = ? AND genero_id = ? ';
-
                     sqlParams.push(competencia.director_id, competencia.actor_id, competencia.genero_id);
                 }else if (competencia.director_id && competencia.actor_id) {
-                    sqlPeliculas += ' LEFT JOIN director_pelicula as Dp on P.id = Dp.pelicula_id ' +
-                                    ' LEFT JOIN actor_pelicula as Ap on P.id = Ap.pelicula_id '
+                    sqlPeliculas += ' LEFT JOIN director_pelicula as Dp ON P.id = Dp.pelicula_id ' +
+                                    ' LEFT JOIN actor_pelicula as Ap ON P.id = Ap.pelicula_id '
                                      ' WHERE Dp.director_id = ? AND  Ap.actor_id = ? ';
                     sqlParams.push(competencia.director_id, competencia.actor_id);
                 }else if (competencia.director_id && competencia.genero_id) {
-                    sqlPeliculas += ' LEFT JOIN director_pelicula as Dp on P.id = Dp.pelicula_id WHERE Dp.director_id = ? ' +
+                    sqlPeliculas += ' LEFT JOIN director_pelicula as Dp ON P.id = Dp.pelicula_id WHERE Dp.director_id = ? ' +
                                     ' AND genero_id = ? ';
                     sqlParams.push(competencia.director_id, competencia.genero_id);
                 }else if (competencia.actor_id && competencia.genero_id) {
-                    sqlPeliculas +=  ' LEFT JOIN actor_pelicula as Ap on P.id = Ap.pelicula_id WHERE Ap.actor_id = ? ' +
+                    sqlPeliculas +=  ' LEFT JOIN actor_pelicula as Ap ON P.id = Ap.pelicula_id WHERE Ap.actor_id = ? ' +
                                      ' AND genero_id = ? ';
                     sqlParams.push(competencia.actor_id, competencia.genero_id);
                 }else if (competencia.genero_id) {
                     sqlPeliculas += ' WHERE genero_id = ? ';
                     sqlParams.push(competencia.genero_id);
                 }else if (competencia.director_id) {
-                    sqlPeliculas += ' LEFT JOIN director_pelicula as Dp on P.id = Dp.pelicula_id WHERE Dp.director_id = ? ';
+                    sqlPeliculas += ' LEFT JOIN director_pelicula as Dp ON P.id = Dp.pelicula_id WHERE Dp.director_id = ? ';
                     sqlParams.push(competencia.director_id);
                 }else if (competencia.actor_id) {
-                    sqlPeliculas += ' LEFT JOIN actor_pelicula as Ap on P.id = Ap.pelicula_id WHERE Ap.actor_id = ? ';
+                    sqlPeliculas += ' LEFT JOIN actor_pelicula as Ap ON P.id = Ap.pelicula_id WHERE Ap.actor_id = ? ';
                     sqlParams.push(competencia.actor_id);
                 }
             
