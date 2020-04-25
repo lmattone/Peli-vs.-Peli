@@ -9,10 +9,27 @@ module.exports = {
         let directorCompetencia = req.body.director === '0' ? null : req.body.director;
         let actorCompetencia = req.body.actor === '0' ? null : req.body.actor;
 
+        // Chequea la obligatoriedad del nombre de una competencia
+        if (!nombreCompetencia)return res.status(400).send('Nombre es un campo obligatorio');
+
+        //Chequea que el nombre de la competencia no sea igual a  otra ya existente
+        let sqlnombreCompetencia = "SELECT * FROM competencias WHERE nombre = '" + nombreCompetencia + "'";
+
+        connection.query(sqlnombreCompetencia, function(error, results, fields) {
+        if (error) {
+            console.log("Hubo un error en la consulta", error.message);
+            return res.status(404).send("Hubo un error en la consulta");
+        }
+
+        if (results.length === 1) {
+            console.log("Ya hay una competencia con este nombre");
+            return res.status(422).send("Ya hay una competencia con este nombre");
+        }
+
         let sql = 'SELECT COUNT(1) cantidad_peliculas FROM pelicula as P ';
         let sqlParams = [];
 
-
+        
         // Si elige una crear una competencia por por director, actor, genero o combinada
         if (generoCompetencia && directorCompetencia && actorCompetencia) {
             sql +=  ' LEFT JOIN director_pelicula as Dp ON P.id = Dp.pelicula_id ' +
@@ -57,9 +74,11 @@ module.exports = {
                 if (error) return console.error(error);
 
                 res.status(201).json({ message: 'La competencia ha sido creada con éxito' });
+                });
             });
         });
     }
 }
+
 
 

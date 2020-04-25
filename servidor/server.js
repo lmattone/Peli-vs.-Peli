@@ -10,6 +10,9 @@ let controladorEliminarVotos = require ('./controladores/controladorEliminarVoto
 let controladorGeneros = require('./controladores/controladorGeneros');
 let controladorDirectores = require('./controladores/controladorDirectores');
 let controladorActores = require('./controladores/controladorActores');
+let controladorEliminarCompetencias = require('./controladores/controladorEliminarCompetencia');
+let controladorEditarCompetencias = require('./controladores/controladorEditarCompetencias');
+let controladorCompetencia = require('./controladores/controladorCompetencia');
 
 
 server.use(cors());
@@ -18,6 +21,8 @@ server.use(express.urlencoded({ extended: true }));
 
 //Ruta para obtener competencias
 server.get('/competencias', controladorCompetencias.getAllCompetencias);
+//Ruta para obtener una competencia
+server.get('/competencias/:id', controladorCompetencia.getCompetencia);
 //Ruta para obtener películas para votar
 server.get('/competencias/:id/peliculas', controladorPeliculas.getObtenerPeliculas);
 //Ruta para votar
@@ -34,6 +39,9 @@ server.get('/generos', controladorGeneros.getAllGeneros);
 server.get('/directores', controladorDirectores.getAllDirectores);
 // Ruta para cargar nuevas competencias a través de los actores correspondientes
 server.get('/actores', controladorActores.getAllActores);
+// Eliminar películas
+server.delete('/competencias/:id', controladorEliminarCompetencias.deleteCompetencias);
+server.put('/competencias/:id', controladorEditarCompetencias.putEditarCompetencia);
 
 
 
